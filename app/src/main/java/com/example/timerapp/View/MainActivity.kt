@@ -12,6 +12,8 @@ import com.example.timerapp.R
 import com.example.timerapp.ViewModel.TimerViewModel
 
 import java.util.*
+import kotlin.concurrent.timer
+
 class MainActivity : AppCompatActivity() {
     var timerText: TextView? = null
     var stopStartButton: Button? = null
@@ -34,11 +36,18 @@ class MainActivity : AppCompatActivity() {
         timeViewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
         //this will increment time value by 2
          increment.setOnClickListener {
-             runOnUiThread { timeViewModel.countIncrement = 2 }
+             runOnUiThread { timeViewModel.countIncrement = 15 }
 
          }
         //this will decrease time value by 2
-        Decrement.setOnClickListener(View.OnClickListener { runOnUiThread { timeViewModel.countIncrement = -2 } })
+        Decrement.setOnClickListener(View.OnClickListener {
+
+            runOnUiThread {
+                if(timeViewModel.second>0) {
+                    timeViewModel.countIncrement = -15
+                }}
+        })
+
     }
 
     fun resetTapped(view: View?) {
@@ -66,12 +75,20 @@ class MainActivity : AppCompatActivity() {
     fun startStopTapped(view: View?) {
         if (timerStarted == false) {
             timerStarted = true
-            setButtonUI("STOP", R.color.black)
+            setButtonUI("Pause", R.color.black)
             startTimer()
-        } else {
+        }
+        else if(timerStarted == true){
+            setButtonUI("Resume", R.color.teal_200)
+            timer!!.cancel()
+        }
+
+        else {
             timerStarted = false
             setButtonUI("START", R.color.white)
-            timerTask!!.cancel()
+
+
+
         }
     }
 
@@ -84,9 +101,13 @@ class MainActivity : AppCompatActivity() {
         timerTask = object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                      timeViewModel.time = timeViewModel.time+timeViewModel.countIncrement
+
+                         timeViewModel.time = timeViewModel.time + timeViewModel.countIncrement
+
                       timeViewModel.incrementValue = getTimerText()
-                      timerText?.text = timeViewModel.incrementValue
+                     if(timeViewModel.second>=0) {
+                         timerText?.text = timeViewModel.incrementValue
+                     }
                 }
             }
         }
