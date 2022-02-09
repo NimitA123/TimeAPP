@@ -17,8 +17,8 @@ import kotlin.concurrent.timer
 class MainActivity : AppCompatActivity() {
     var timerText: TextView? = null
     var stopStartButton: Button? = null
-    private lateinit var increment: Button
-    private lateinit var Decrement : Button
+    private lateinit var increment: TextView
+    private lateinit var Decrement : TextView
     var timer: Timer? = null
     var timerTask: TimerTask? = null
     var timerStarted = false
@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         timerText = findViewById<View>(R.id.timerText) as TextView
         stopStartButton = findViewById<View>(R.id.startStopButton) as Button
-        increment = findViewById(R.id.btnIncrement)
-        Decrement = findViewById(R.id.btnDecrement)
+        Decrement = findViewById(R.id.btnIncrement)
+        increment = findViewById(R.id.btnDecrement)
         timer = Timer()
         timeViewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
         //this will increment time value by 2

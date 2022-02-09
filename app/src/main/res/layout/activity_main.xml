@@ -60,39 +60,46 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id = "@+id/Linear1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Linear"
-        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         >
-        <Button
+        <TextView
             android:id="@+id/btnIncrement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@null"
+           android:textSize="50dp"
+
             android:onClick="resetTapped"
-            android:text="Increment"
+            android:text="-"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/teal_700"
-            android:textSize="16sp"
+
 
             />
-
-        <Button
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:src = "@drawable/circle"/>
+        <TextView
             android:id="@+id/btnDecrement"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end"
             android:background="@null"
             android:onClick="startStopTapped"
-            android:text="Decrement "
-            android:textColor="@color/purple_200"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:text="+"
+            android:textSize="50dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/teal_200"
+
+
             />
 
 
